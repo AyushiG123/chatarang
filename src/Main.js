@@ -21,4 +21,4 @@ const styles = {
     height: '100vh',
    }
 
-export default Main
+export default Main 
