@@ -8,4 +8,12 @@ const Message =(props) => {
     )
 }
 
+const stylesMessage={
+    message:{
+        display: 'flex',
+        marginTop: '1rem',
+        padding: '0 1rem',
+    }
+}
+
 export default Message
