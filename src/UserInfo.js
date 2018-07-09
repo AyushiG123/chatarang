@@ -28,8 +28,9 @@ const styles = {
 
   user: {
     flex: 1,
-    overflowX:'hidden',
-  }
+    overflowX: 'hidden',
+    textOverflow: 'ellipsis',
+  },
 }
 
 export default UserInfo

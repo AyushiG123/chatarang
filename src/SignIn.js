@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-import {auth, googleProvider} from './base'
+import { auth, googleProvider, githubProvider } from './base'
 
 class SignIn extends Component {
   state = {
     email: '',
   }
 
-  authenticate = () =>{
-    auth.signInWithPopup(googleProvider)
-    .then(result => console.log(result))
+  authenticate = (provider) => {
+    auth.signInWithPopup(provider)
   }
 
-  handleChange = (ev) => {
-    this.setState({ email: ev.target.value })
-  }
+  // handleChange = (ev) => {
+  //   this.setState({ email: ev.target.value })
+  // }
 
-  handleSubmit = (ev) => {
-    ev.preventDefault()
-    this.props.handleAuth({
-      uid: `${this.state.email}-ksdfjhu32472398`,
-      displayName: this.state.email,
-      email: this.state.email,
-    })
-  }
+  // handleSubmit = (ev) => {
+  //   ev.preventDefault()
+  //   this.props.handleAuth({
+  //     uid: `${this.state.email}-ksdfjhu32472398`,
+  //     displayName: this.state.email,
+  //     email: this.state.email,
+  //   })
+  // }
 
   render() {
     return (
@@ -40,7 +39,8 @@ class SignIn extends Component {
             className={css(styles.form)}
             onSubmit={this.handleSubmit}
           >
-            <label
+            <h2>Sign In</h2>
+            {/* <label
               htmlFor="email"
               className={css(styles.label)}
             >
@@ -59,15 +59,26 @@ class SignIn extends Component {
               className={css(styles.button)}
             >
               Sign In
+            </button> */}
+
+            <button
+              type="button"
+              className={css(styles.button)}
+              onClick={() => this.authenticate(googleProvider)}
+            >
+              <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
+              Sign in with Google
+            </button>
+
+            <button
+              type="button"
+              className={css(styles.button, styles.github)}
+              onClick={() => this.authenticate(githubProvider)}
+            >
+              <i className={`fab fa-github ${css(styles.brandIcon)}`}></i>
+              Sign in with GitHub
             </button>
           </form>
-
-          <button
-            type="button"
-            className={css(styles.button)}
-            onClick
-          >
-          </button>
 
           <div className="blurb">
             <h2 className={css(styles.h2)}>
@@ -110,14 +121,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     margin: '0 auto',
+    paddingBottom: '3rem',
   },
   form: {
     width: '40rem',
-    height: '15rem',
     backgroundColor: 'white',
     boxShadow: '0 1px 1px rgba(0,0,0,.1)',
     marginBottom: '2rem',
-    padding: '2rem 0 0',
+    paddingBottom: '2rem',
   },
   label: {
     display: 'block',
@@ -142,13 +153,20 @@ const styles = StyleSheet.create({
   },
   button: {
     display: 'block',
-    margin: '0 auto',
+    margin: '0 auto 1rem',
     padding: '1rem 2rem',
     fontSize: '1.2rem',
     borderRadius: '1rem',
     backgroundColor: '#ff3333',
     color: 'white',
     width: '20rem',
+  },
+  github: {
+    marginBottom: 0,
+    backgroundColor: '#6e5494',
+  },
+  brandIcon: {
+    marginRight: '1rem',
   },
 })
 export default SignIn
