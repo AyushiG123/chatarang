@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
+import {auth, googleProvider} from './base'
+
 class SignIn extends Component {
   state = {
     email: '',
+  }
+
+  authenticate = () =>{
+    auth.signInWithPopup(googleProvider)
+    .then(result => console.log(result))
   }
 
   handleChange = (ev) => {
@@ -54,6 +61,13 @@ class SignIn extends Component {
               Sign In
             </button>
           </form>
+
+          <button
+            type="button"
+            className={css(styles.button)}
+            onClick
+          >
+          </button>
 
           <div className="blurb">
             <h2 className={css(styles.h2)}>
