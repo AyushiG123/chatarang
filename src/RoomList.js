@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite'
 
 import Room from './Room'
 
-const RoomList = ({ rooms }) => {
+const RoomList = ({ rooms, setCurrentRoom}) => {
   return (
     <nav
       className={`RoomList ${css(styles.roomList)}`}
@@ -17,6 +17,7 @@ const RoomList = ({ rooms }) => {
             roomName => <Room
                           roomName={roomName}
                           key={roomName}
+                          setCurrentRoom={setCurrentRoom}
                         />
           )
         }

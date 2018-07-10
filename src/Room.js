@@ -1,14 +1,26 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-const Room = ({ roomName }) => {
+class Room extends Component{
+  constructor(props){
+    super(props)
+    this.state=""
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(e){
+       e.preventDefault()
+       this.setState(this.props.setCurrentRoom(this.props.roomName))
+  }
+  render(){
   return (
     <li className={css(styles.item)}>
-      <a href="/" className={css(styles.link)}>
-        {roomName}
+      <a href="/" className={css(styles.link)} onClick={this.handleClick}>
+        {this.props.roomName}
       </a>
     </li>
   )
+}
 }
 
 const styles = StyleSheet.create({
